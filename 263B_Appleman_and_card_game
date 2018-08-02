@@ -1,0 +1,25 @@
+n, k = map(int, input().split())
+str = input()
+countarr = [0] * 26
+for i in range(n):
+    countarr[ord(str[i]) - 65] += 1
+
+countarr.sort()
+countarr.reverse()
+#print(countarr)
+ans = 0
+for i in range(26):
+    if k <= 0:
+        break
+    if countarr[i] > k:
+        ans = ans + k * k
+        break
+    elif countarr[i] <= k:
+        ans = ans + (countarr[i] * countarr[i])
+        k = k - countarr[i]
+    else:
+        ans += k
+        k -= 1
+
+
+print(ans)
